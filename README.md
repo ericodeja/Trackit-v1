@@ -33,7 +33,7 @@ trackit/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/trackit.git
+git clone https://github.com/ericodeja/trackit.git
 cd trackit
 ```
 
@@ -109,7 +109,7 @@ All your data is stored locally on your machine. No internet connection or accou
 
 ## 👨‍💻 Author
 
-Built with consistency and clarity by [Eric™](https://github.com/your-github-link)
+Built with consistency and clarity by https://github.com/ericodeja
 
 ---
 
