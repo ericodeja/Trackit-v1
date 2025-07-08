@@ -32,5 +32,13 @@
                 "hour(s)"
             ]
         }
+    },
+    "Helping": {
+        "streak": 0,
+        "log": [],
+        "frequency": {
+            "type": "daily",
+            "time_left": null
+        }
     }
 }

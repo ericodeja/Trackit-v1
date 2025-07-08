@@ -6,7 +6,7 @@ import sys
 
 status = ["Not Started", "Completed"]
 database = {}
-file_path = "database.json"
+file_path = "habits.json"
 frequency = ["hourly", "daily", "weekly", "monthly", "yearly"]
 
 
@@ -260,9 +260,8 @@ def view_database():
             f"{habits:<20}{freq_type:<10}{time_left:<25}{info['streak']:<25}{log:<25}")
 
 
-
 actions = [add_habit, update_status,
-           view_progress,view_database, edit_key, clear_program, exit_program]
+           view_progress, view_database, edit_key, clear_program, exit_program]
 
 
 while True:
