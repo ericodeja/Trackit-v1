@@ -40,8 +40,7 @@
             "type": "daily",
             "time_left": null
         }
-<<<<<<<< HEAD:habits.json
-========
+
     },
     "Camping": {
         "streak": 1,
@@ -55,6 +54,6 @@
                 "hour(s)"
             ]
         }
->>>>>>>> bulk-functions:trackit/db/habits.json
+
     }
 }
