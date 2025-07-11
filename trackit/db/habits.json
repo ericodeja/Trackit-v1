@@ -1,0 +1,57 @@
+{
+    "Workout": {
+        "streak": 1,
+        "log": [
+            "2025-07-07"
+        ],
+        "frequency": {
+            "type": "daily",
+            "time_left": [
+                10,
+                "hour(s)"
+            ]
+        }
+    },
+    "Read": {
+        "streak": 0,
+        "log": [],
+        "frequency": {
+            "type": "hourly",
+            "time_left": null
+        }
+    },
+    "Running": {
+        "streak": 1,
+        "log": [
+            "2025-07-07"
+        ],
+        "frequency": {
+            "type": "daily",
+            "time_left": [
+                21,
+                "hour(s)"
+            ]
+        }
+    },
+    "Helping": {
+        "streak": 0,
+        "log": [],
+        "frequency": {
+            "type": "daily",
+            "time_left": null
+        }
+    },
+    "Camping": {
+        "streak": 1,
+        "log": [
+            "2025-07-07"
+        ],
+        "frequency": {
+            "type": "daily",
+            "time_left": [
+                21,
+                "hour(s)"
+            ]
+        }
+    }
+}
