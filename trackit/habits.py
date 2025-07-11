@@ -3,7 +3,6 @@ from storage import all_habits
 
 class Habit:
     habit_list = {}
-    # habit_list.update(all_habits)
     habit_list.update(all_habits)
 
     def __init__(self, name, frequency, streak=0, log=[], time_left=(0, "")):
