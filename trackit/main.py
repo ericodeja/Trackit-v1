@@ -4,7 +4,8 @@ from habit_tracker import add_habit, update_status, view_progress, clear_program
 def add():
     name = input("Enter habit name(s)\nSeparate with commas: ").title()
     habit = add_habit(name)
-    print(f"'{habit}' has been added.")
+    if habit:
+        print(f"'{habit}' has been added.")
 
 
 def completed():
@@ -15,7 +16,8 @@ def completed():
 
 def habit_progress():
     name = input("Enter habit name: ").title()
-    view_progress(name)
+    feedback = view_progress(name)
+    print(feedback)
 
 
 def edit():
@@ -47,5 +49,7 @@ while True:
             print("Input a valid number 1 - 7")
     except ValueError:
         print("Input a  number 1 - 7")
+
+        
 
 

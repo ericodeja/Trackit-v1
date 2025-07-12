@@ -1,0 +1,29 @@
+{
+    "Running": {
+        "streak": 0,
+        "frequency": "Hourly",
+        "log": [],
+        "time_left": [
+            0,
+            ""
+        ]
+    },
+    "Jumpinng": {
+        "streak": 0,
+        "frequency": "Daily",
+        "log": [],
+        "time_left": [
+            0,
+            ""
+        ]
+    },
+    "Dripping": {
+        "streak": 0,
+        "frequency": "Hourly",
+        "log": [],
+        "time_left": [
+            0,
+            ""
+        ]
+    }
+}

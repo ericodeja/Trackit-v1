@@ -13,29 +13,30 @@ def add_habit(name):
         print("!Habit cannot be empty")
         return
 
-    sep_name = [part.strip() for part in name.split(",")]
+    habits = [part.strip() for part in name.split(",")]
 
     # Check if habit already exists
     for key in Habit.habit_list.keys():
-        if key in sep_name:
-            sep_name.remove(key)
+        if key in habits:
+            habits.remove(key)
             message = f"'{key}' already exists"
             print(message)
 
-    for item in sep_name:
-        frequency = input(f"Enter a frequency for '{item}'\n{frequency_list}").title()
+    # Get frequency of habit and add it to to the JSON file
+    for habit in habits:
+        frequency = input(
+            f"Enter a frequency for '{habit}'\n{frequency_list}").title()
 
+        if frequency == "":
+            frequency = "Daily"
         if frequency in frequency_list:
-            Habit(item, frequency)
-            write_db(Habit.habit_list)
-        elif frequency == "":
-            frequency = "daily"
-            Habit(item, frequency)
+            Habit(habit, frequency)
             write_db(Habit.habit_list)
 
         else:
             print(f"Invalid input -> {frequency}")
-    return sep_name
+            return False
+    return habits
 
 
 def time_left(type):
@@ -46,8 +47,8 @@ def time_left(type):
         return minutes, "minutes(s)"
 
     elif type == frequency_list[1]:
-        time_left_delta = next_day - now
-        hour = time_left_delta.seconds // 3600
+        remaining = next_day - now
+        hour = remaining.seconds // 3600
         return hour, "hour(s)"
 
     elif type == frequency_list[2]:
@@ -55,15 +56,15 @@ def time_left(type):
         return message, "day(s)"
 
     elif type == frequency_list[3]:
-        days_left = month_range - day
-        return days_left, "days(s)"
+        remaining = month_range - day
+        return remaining, "days(s)"
 
     elif type == frequency_list[4]:
-        days_left = (last_day - today).days
-        return days_left, "day(s)"
+        remaining = (last_day - today).days
+        return remaining, "day(s)"
 
 
-def find_habit(name):
+def get_properties(name):
     if not Habit.habit_list:
         print("!You have no saved habit")
         return
@@ -77,7 +78,7 @@ def find_habit(name):
 
 
 def update_status(name):
-    properties = find_habit(name)
+    properties = get_properties(name)
 
     if properties:
         # Update Log
@@ -93,24 +94,23 @@ def update_status(name):
 
 
 def view_progress(name):
-    properties = find_habit(name)
+    properties = get_properties(name)
     if properties:
-        print(f"'{name}' has a {properties["streak"]} day(s) streak")
+        return f"'{name}' has a {properties["streak"]} day(s) streak"
 
     write_db(Habit.habit_list)
 
 
 def exit_program():
-    while True:
-        option = input("Do you want to exit the program? (y/n): ").lower()
-        if option == "y" or option == "yes":
-            print("Exiting Program...")
-            write_db(Habit.habit_list)
-            sys.exit()
-        elif option == "n" or option == "no":
-            continue
-        else:
-            print("Enter a valid response (y/n)")
+    option = input("Do you want to exit the program? (y/n): ").lower()
+    if option == "y" or option == "yes":
+        print("Exiting Program...")
+        write_db(Habit.habit_list)
+        sys.exit()
+    elif option == "n" or option == "no":
+        return
+    else:
+        print("Enter a valid response (y/n)")
 
 
 def clear_program():
@@ -133,17 +133,16 @@ def edit_habit(option, name, value):
         print("Updated")
 
     def edit_frequency(name, value):
+        if value == "":
+            value = "Daily"
         if value in frequency_list:
-            Habit.habit_list[name]["frequency"] = value
-        elif value == "":
-            value = "daily"
             Habit.habit_list[name]["frequency"] = value
             print("Updated")
 
     if not Habit.habit_list:
         print("!You have no saved habit")
         return
-    
+
     found = False
     for key in Habit.habit_list.keys():
         if name == key:
@@ -154,10 +153,10 @@ def edit_habit(option, name, value):
 
     if not found:
         print(f"'{name}' doesn't exist.")
-    
+
     if found:
         if option == "Habit":
-                edit_name(name, value)
+            edit_name(name, value)
         elif option == "Frequency":
             edit_frequency(name, value)
         else:
@@ -175,16 +174,16 @@ def view_database():
     print(f"{"Habit":<20}{"Type":<10}{"Time Left":<25}{"Streak":<25}{"Log":<25} ")
     print("-" * 70)
 
-    for habits, info in Habit.habit_list.items():
-        time_left = info["frequency"]["time_left"]
-        freq_type = info["frequency"]["type"]
+    for key, value in Habit.habit_list.items():
+        time_left = value["time_left"]
+        freq_type = value["frequency"]
 
         if time_left:
             time_left = f"{time_left[0]} {time_left[1]}"
         else:
             time_left = "N/A"
 
-        log = ", ".join(info["log"]) if info["log"] else "-"
+        log = ", ".join(value["log"]) if value["log"] else "-"
 
         print(
-            f"{habits:<20}{freq_type:<10}{time_left:<25}{info['streak']:<25}{log:<25}")
+            f"{key:<20}{freq_type:<10}{time_left:<25}{value['streak']:<25}{log:<25}")
