@@ -110,6 +110,7 @@ All your data is stored locally on your machine. No internet connection or accou
 ## 👨‍💻 Author
 
 Built with consistency and clarity by https://github.com/ericodeja
+"This was my first version of TrackIt using JSON files as storage. The upgraded version with a real database and production-ready backend is https://github.com/ericodeja/Trackit-v2.git."
 
 ---
 
